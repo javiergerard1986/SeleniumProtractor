@@ -15,6 +15,8 @@ exports.config = {
             fileName: data.fileName
           }));
 	},
+	allScriptsTimeout: 60000,
+    getPageTimeout: 30000,
 	jasmineNodeOpts: {
 		showColors: data.showColors,
 		showTiming: data.showTiming,
