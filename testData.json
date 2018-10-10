@@ -9,5 +9,7 @@
 "updateSuggestedSearch":"hotels near University College London (UCL)",
 "monthsToUpdate":1,
 "defaultSortOption":"Relevance",
-"sortHotelsByOption":"Price"
+"sortHotelsByOption":"Price",
+"sortTopicOfSearch":"Paris",
+"sortSuggestedSearch":"Paris Las Vegas Resort & Casino"
 }

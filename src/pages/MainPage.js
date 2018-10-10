@@ -25,7 +25,7 @@ var MainPage = function(){
 		expect(this.searchBtn.isDisplayed()).toBe(true);
 		expect(this.footerSection.isDisplayed()).toBe(true);
 	};
-	
+
 };
 
 module.exports = MainPage;

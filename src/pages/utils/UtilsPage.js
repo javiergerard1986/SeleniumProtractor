@@ -17,7 +17,14 @@ var UtilsPage = function(){
 		var dateToReturn = new Date(dateToIncrement);
 		dateToReturn.setMonth(dateToReturn.getMonth() + monthsToAdd);
 		return dateToReturn;
-	}
+	};
+
+	// Function to remove $ character from specified string
+	this.remove$Character = function(char){
+		var result = char.replace(/^$+/i, '');
+		console.log(result);
+		return result;
+	};
 	
 };
 

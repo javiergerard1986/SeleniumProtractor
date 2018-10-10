@@ -1,11 +1,12 @@
 var data = require('../../testData.json');
+var configData = require('../../configData.json');
 var MainPage = require('../pages/MainPage.js');
 
 describe('Protractor Training Scenarios:', function(){
 	var mainPage = new MainPage();
 	var selectDatesPage;
 	var hotelResultsPage;
-	/*
+/*
 	it('Search for a hotel', function(){
 	
 		// Check that user is on Home Page
@@ -81,15 +82,14 @@ describe('Protractor Training Scenarios:', function(){
 		hotelResultsPage.checkPage();
 		
 	});
-	*/
-	
+*/
 	it('Sorting order verification', function(){
 		
 		// Check that user is on Home Page
 		mainPage.checkPage();
 		
 		// Make location search
-		selectDatesPage = mainPage.locationSearch(data.topicOfSearch, data.suggestedSearch);
+		selectDatesPage = mainPage.locationSearch(data.sortTopicOfSearch, data.sortSuggestedSearch);
 		selectDatesPage.checkPage();
 		selectDatesPage.checkInDateIsSelected();
 		
@@ -121,6 +121,11 @@ describe('Protractor Training Scenarios:', function(){
 		hotelResultsPage.checkHotelResultsSortingBySpecifiedOption(data.sortHotelsByOption);
 		
 	});
-	
+/*	
+	it('Test functionallity', function(){
+		
+		mainPage.test();
+
+	});
+*/
 });
-	

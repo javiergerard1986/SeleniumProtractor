@@ -90,8 +90,15 @@ var SelectDatesPage = function(){
 		// Set To date
 		toDate = this.utils.todayPlusProvidedNumberOfDays(fromDate, daysToAddToToDate);
 		
-		// Click on To date
-		this.clickOnToDateBtn(toDate);
+		// Define calendar where the to date will be selected
+		if(toDate.getMonth() === currentDate.getMonth()){
+			// Click on to date from left calendar
+			this.clickOnFromDateBtn(toDate);
+		}else{
+			// Click on to date from right calendar
+			this.clickOnToDateBtn(toDate);
+		}
+		
 	};
 	
 	// Function to click on the To date button
