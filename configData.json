@@ -1,0 +1,14 @@
+{
+"seleniumAddress":"http://localhost:4444/wd/hub",
+"framework":"jasmine",
+"url":"https://www.room77.com/",
+"savePath":"./reports/",
+"fileName":"protractorTrainingCourseReporter.html",
+"takeScreenshots":true,
+"takeScreenshotsOnlyOnFailures":true,
+"consolidateAll":true,
+"specs":"./src/tests/protractorTrainingTests.js",
+"showColors":true,
+"showTiming":true,
+"defaultTimeoutInterval":120000
+}
