@@ -1,12 +1,17 @@
 var data = require('../../testData.json');
-var configData = require('../../configData.json');
 var MainPage = require('../pages/MainPage.js');
 
 describe('Protractor Training Scenarios:', function(){
-	var mainPage = new MainPage();
+	var mainPage;
 	var selectDatesPage;
 	var hotelResultsPage;
-/*
+
+	beforeEach(function(){
+		mainPage = new MainPage();
+		browser.get(data.url);
+		browser.manage().window().maximize();
+	});
+
 	it('Search for a hotel', function(){
 	
 		// Check that user is on Home Page
@@ -82,7 +87,7 @@ describe('Protractor Training Scenarios:', function(){
 		hotelResultsPage.checkPage();
 		
 	});
-*/
+
 	it('Sorting order verification', function(){
 		
 		// Check that user is on Home Page
