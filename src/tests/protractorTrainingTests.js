@@ -11,7 +11,7 @@ describe('Protractor Training Scenarios:', function(){
 		browser.get(data.url);
 		browser.manage().window().maximize();
 	});
-
+/*
 	it('Search for a hotel', function(){
 	
 		// Check that user is on Home Page
@@ -125,7 +125,41 @@ describe('Protractor Training Scenarios:', function(){
 		// Check hotel results sorting by specified sort option
 		hotelResultsPage.checkHotelResultsSortingBySpecifiedOption(data.sortHotelsByOption);
 		
+	});*/
+
+	it('Filter result verification',function(){
+
+		// Check that user is on Home Page
+		mainPage.checkPage();
+		
+		// Make location search
+		selectDatesPage = mainPage.locationSearch(data.filterTopicOfSearch, data.filterSuggestedSearch);
+		selectDatesPage.checkPage();
+		selectDatesPage.checkInDateIsSelected();
+
+		// Select check in date
+		selectDatesPage.selectFromDate(data.daysToAddToFromDate);
+		selectDatesPage.checkFromDateSelected();
+
+		// Select check out date
+		selectDatesPage.selectToDate(data.daysToAddToToDate);
+		selectDatesPage.checkToDateSelected();
+
+		// Select guests and rooms
+		selectDatesPage.selectGuestsNumber(data.guestsNumber);
+		selectDatesPage.selectRoomsNumber(data.roomsNumber);
+
+		// Make location + selected dates search
+		hotelResultsPage = selectDatesPage.locationWithDatesSearch();
+
+		// Check that user is on HotelResults page
+		hotelResultsPage.checkPage();
+
+		// Filter hotels by rating
+		hotelResultsPage.filterHotelsByRating(data.filterStarRating, data.filterGuestRating);
+		
 	});
+
 /*	
 	it('Test functionallity', function(){
 		

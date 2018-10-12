@@ -11,6 +11,7 @@ var HotelResultsPage = function(){
 	this.hotelsListDiv = element(by.id("list"));
 	this.selectedSortOption = element(by.xpath("//ul[@class='sort_list ng-scope']//a//em"));
 	this.priceBtnsList = element.all(by.xpath("//a[@class='btn btn-bookstyle']//span[@class='rate']"));
+	this.ratingDd = element(by.xpath("//a[contains(text(),'Rating')]"));
 	
 	// Function to check expected web elements to be displayed on page
 	this.checkPage = function(){
@@ -65,6 +66,14 @@ var HotelResultsPage = function(){
 				expect(currentPrice).not.toBeLessThan(previousPrice);
 				
 			}});
+	};
+
+	// Function to filter hotels by specified rating
+	this.filterHotelsByRating = function(hotelRating, guestRating){
+		// Click specified filter option
+		this.ratingDd.click();
+		let ra = element(by.xpath("//span[@step='1']"));
+		ra.click();
 	};
 
 };
