@@ -1,14 +1,16 @@
 var SearchComponentPage = require('./components/SearchComponentPage.js');
+var UtilsPage = require('./utils/UtilsPage.js');
 
 var HotelResultsPage = function(){
 	
 	var SelectDatesPage = require('./SelectDatesPage.js');
+	this.utils = new UtilsPage();
 	
 	// Attributes
 	this.searchComponent = new SearchComponentPage();
 	this.hotelsListDiv = element(by.id("list"));
 	this.selectedSortOption = element(by.xpath("//ul[@class='sort_list ng-scope']//a//em"));
-	this.priceBtnsList;
+	this.priceBtnsList = element.all(by.xpath("//a[@class='btn btn-bookstyle']//span[@class='rate']"));
 	
 	// Function to check expected web elements to be displayed on page
 	this.checkPage = function(){
@@ -53,17 +55,18 @@ var HotelResultsPage = function(){
 	// Function to check hotel results by price sort option
 	this.checkHotelsSortByPrice = function(){
 	
-		this.priceBtnsList = element.all(by.xpath("//a[@class='btn btn-bookstyle']//span[@class='rate']")).getText().then(function(prices){	
-			// If hotel results are not displayed then price sort verification will not be done	
-			if(prices.length !== 0){
-				// Web Page is not sorting the first hotel result by price. Considering that the page works as expected, I will start to check hotel prices from the 2nd hotel result 	
-				for(let i = 1; i < prices.length; i++){
-					console.log(prices[i]);
-				}
-			}
-			
-		});
-	};	
+		// Price validation will start on 2 item. This is cause the page is displaying an offer in the first position that does not match with the price sort
+		this.priceBtnsList.getText().then(function(prices){
+			// Price Validation
+			for(let i = 2; i < prices.length; i++){
+				let previousPrice = parseInt(prices[i - 1].replace("$",""));
+				let currentPrice = parseInt(prices[i].replace("$",""));
+				
+				expect(currentPrice).not.toBeLessThan(previousPrice);
+				
+			}});
+	};
+
 };
 
 module.exports = HotelResultsPage;
