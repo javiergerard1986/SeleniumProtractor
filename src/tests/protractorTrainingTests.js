@@ -156,15 +156,14 @@ describe('Protractor Training Scenarios:', function(){
 		hotelResultsPage.checkPage();
 
 		// Filter hotels by rating
-		hotelResultsPage.filterHotelsByRating(data.filterStarRating, data.filterGuestRating);
+		hotelResultsPage.filterHotelsByRating(data.filterStarsRating, data.filterGuestRatingPercent);
 		
+		// Check specified hotel stars rating filter criteria
+		hotelResultsPage.checkSelectedHotelStarsRatingCriteria(data.filterStarsRating);
+
+		// Check specified guest percent rating filter criteria
+		hotelResultsPage.checkSelectedGuestsPercentRatingCriteria(data.filterGuestRatingPercent);
+
 	});
 
-/*	
-	it('Test functionallity', function(){
-		
-		mainPage.test();
-
-	});
-*/
 });
