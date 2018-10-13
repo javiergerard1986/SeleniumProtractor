@@ -11,6 +11,8 @@ var HotelResultsPage = function(){
 	this.hotelsListDiv = element(by.id("list"));
 	this.selectedSortOption = element(by.xpath("//ul[@class='sort_list ng-scope']//a//em"));
 	this.priceBtnsList = element.all(by.xpath("//a[@class='btn btn-bookstyle']//span[@class='rate']"));
+	this.brandDd = element(by.xpath("//a[contains(text(),'Brands')]"));
+	this.hotelNamesLnkList = element.all(by.xpath("//div[@class='info_container']//a//span//span"));
 	this.ratingDd = element(by.xpath("//a[contains(text(),'Rating')]"));
 	this.hotelRatingSlider = element(by.xpath("//span[@class='slider hotel_classes ng-isolate-scope ng-scope ng-pristine ng-valid']//span[@class='pointer']"));
 	this.guestRatingSlider = element(by.xpath("//span[@class='slider ng-isolate-scope ng-scope ng-pristine ng-valid']//span[@class='pointer']"));
@@ -65,11 +67,33 @@ var HotelResultsPage = function(){
 			for(let i = 2; i < prices.length; i++){
 				let previousPrice = parseInt(prices[i - 1].replace("$",""));
 				let currentPrice = parseInt(prices[i].replace("$",""));
-				
 				expect(currentPrice).not.toBeLessThan(previousPrice);
-				
 			}});
 	};
+
+	// Function to filter hotels by specified brand
+	this.filterHotelsByBrand = function(filterBrand){
+		
+		// Click on Brands filter drop down list
+		this.brandDd.click();
+
+		// Select specified brand option
+		var brandToSelectElement =  element(by.xpath("//label[@class='serp_graphics']//span[text()='" + filterBrand + "']"));
+		brandToSelectElement.click();
+
+		// Close Brands filter drop down list
+		this.brandDd.click();
+	};
+
+	// Function to check hotel names by specified brand option
+	this.checkHotelsByBrandFilter = function(selectedFilterBrand){
+		this.hotelNamesLnkList.getText().then(function(hotelNames){
+			// Hotel Names validation
+			for(let i = 0; i < hotelNames.length; i++){
+				expect(hotelNames[i].startsWith(selectedFilterBrand)).toBe(true);
+			}
+		});
+	}
 
 	// Function to filter hotels by specified rating
 	this.filterHotelsByRating = function(hotelRating, guestRating){

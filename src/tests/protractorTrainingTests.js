@@ -11,7 +11,7 @@ describe('Protractor Training Scenarios:', function(){
 		browser.get(data.url);
 		browser.manage().window().maximize();
 	});
-/*
+
 	it('Search for a hotel', function(){
 	
 		// Check that user is on Home Page
@@ -125,7 +125,7 @@ describe('Protractor Training Scenarios:', function(){
 		// Check hotel results sorting by specified sort option
 		hotelResultsPage.checkHotelResultsSortingBySpecifiedOption(data.sortHotelsByOption);
 		
-	});*/
+	});
 
 	it('Filter result verification',function(){
 
@@ -155,6 +155,12 @@ describe('Protractor Training Scenarios:', function(){
 		// Check that user is on HotelResults page
 		hotelResultsPage.checkPage();
 
+		// Filter hotels by brand
+		hotelResultsPage.filterHotelsByBrand(data.filterBrand);
+
+		// Check hotel names by specified brand option
+		hotelResultsPage.checkHotelsByBrandFilter(data.filterBrand);
+		
 		// Filter hotels by rating
 		hotelResultsPage.filterHotelsByRating(data.filterStarsRating, data.filterGuestRatingPercent);
 		
