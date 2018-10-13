@@ -126,11 +126,50 @@ describe('Protractor Training Scenarios:', function(){
 		hotelResultsPage.checkHotelResultsSortingBySpecifiedOption(data.sortHotelsByOption);
 		
 	});
-/*	
-	it('Test functionallity', function(){
+
+	it('Filter result verification',function(){
+
+		// Check that user is on Home Page
+		mainPage.checkPage();
 		
-		mainPage.test();
+		// Make location search
+		selectDatesPage = mainPage.locationSearch(data.filterTopicOfSearch, data.filterSuggestedSearch);
+		selectDatesPage.checkPage();
+		selectDatesPage.checkInDateIsSelected();
+
+		// Select check in date
+		selectDatesPage.selectFromDate(data.daysToAddToFromDate);
+		selectDatesPage.checkFromDateSelected();
+
+		// Select check out date
+		selectDatesPage.selectToDate(data.daysToAddToToDate);
+		selectDatesPage.checkToDateSelected();
+
+		// Select guests and rooms
+		selectDatesPage.selectGuestsNumber(data.guestsNumber);
+		selectDatesPage.selectRoomsNumber(data.roomsNumber);
+
+		// Make location + selected dates search
+		hotelResultsPage = selectDatesPage.locationWithDatesSearch();
+
+		// Check that user is on HotelResults page
+		hotelResultsPage.checkPage();
+
+		// Filter hotels by brand
+		hotelResultsPage.filterHotelsByBrand(data.filterBrand);
+
+		// Check hotel names by specified brand option
+		hotelResultsPage.checkHotelsByBrandFilter(data.filterBrand);
+		
+		// Filter hotels by rating
+		hotelResultsPage.filterHotelsByRating(data.filterStarsRating, data.filterGuestRatingPercent);
+		
+		// Check specified hotel stars rating filter criteria
+		hotelResultsPage.checkSelectedHotelStarsRatingCriteria(data.filterStarsRating);
+
+		// Check specified guest percent rating filter criteria
+		hotelResultsPage.checkSelectedGuestsPercentRatingCriteria(data.filterGuestRatingPercent);
 
 	});
-*/
+
 });

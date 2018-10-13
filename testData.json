@@ -12,5 +12,10 @@
 "defaultSortOption":"Relevance",
 "sortHotelsByOption":"Price",
 "sortTopicOfSearch":"Paris",
-"sortSuggestedSearch":"Paris Las Vegas Resort & Casino"
+"sortSuggestedSearch":"Paris Las Vegas Resort & Casino",
+"filterTopicOfSearch":"Best Western",
+"filterSuggestedSearch":"Best Western Plus French Quarter Landmark Hotel",
+"filterBrand":"Best Western",
+"filterStarsRating":2,
+"filterGuestRatingPercent":70
 }
