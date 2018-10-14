@@ -1,18 +1,20 @@
 var data = require('../../testData.json');
+var configData = require('../../configData.json');
 var MainPage = require('../pages/MainPage.js');
 
 describe('Protractor Training Scenarios:', function(){
 	var mainPage;
 	var selectDatesPage;
 	var hotelResultsPage;
+	var hotelDetailsPage;
 
 	beforeEach(function(){
 		mainPage = new MainPage();
-		browser.get(data.url);
+		browser.get(configData.url);
 		browser.manage().window().maximize();
 	});
-
-	it('Search for a hotel', function(){
+	
+	it('TC1: Search for a hotel', function(){
 	
 		// Check that user is on Home Page
 		mainPage.checkPage();
@@ -42,7 +44,7 @@ describe('Protractor Training Scenarios:', function(){
 		
 	});
 	
-	it('Update Search', function(){
+	it('TC2: Update Search', function(){
 		
 		// Check that user is on Home Page
 		mainPage.checkPage();
@@ -88,7 +90,7 @@ describe('Protractor Training Scenarios:', function(){
 		
 	});
 
-	it('Sorting order verification', function(){
+	it('TC3: Sorting order verification', function(){
 		
 		// Check that user is on Home Page
 		mainPage.checkPage();
@@ -127,7 +129,7 @@ describe('Protractor Training Scenarios:', function(){
 		
 	});
 
-	it('Filter result verification',function(){
+	it('TC4: Filter result verification', function(){
 
 		// Check that user is on Home Page
 		mainPage.checkPage();
@@ -169,6 +171,60 @@ describe('Protractor Training Scenarios:', function(){
 
 		// Check specified guest percent rating filter criteria
 		hotelResultsPage.checkSelectedGuestsPercentRatingCriteria(data.filterGuestRatingPercent);
+
+	});
+	
+	it('TC5: View details of a hotel', function(){
+
+		// Check that user is on Home Page
+		mainPage.checkPage();
+		
+		// Make location search
+		selectDatesPage = mainPage.locationSearch(data.updateTopicOfSearch, data.updateSuggestedSearch);
+		selectDatesPage.checkPage();
+		selectDatesPage.checkInDateIsSelected();
+
+		// Select check in date
+		selectDatesPage.selectFromDate(data.daysToAddToFromDate);
+		selectDatesPage.checkFromDateSelected();
+
+		// Select check out date
+		selectDatesPage.selectToDate(data.daysToAddToToDate);
+		selectDatesPage.checkToDateSelected();
+
+		// Select guests and rooms
+		selectDatesPage.selectGuestsNumber(data.guestsNumber);
+		selectDatesPage.selectRoomsNumber(data.roomsNumber);
+
+		// Make location + selected dates search
+		hotelResultsPage = selectDatesPage.locationWithDatesSearch();
+
+		// Check that user is on HotelResults page
+		hotelResultsPage.checkPage();
+
+		// Click on first hotel name
+		hotelDetailsPage = hotelResultsPage.clickOnSpecifiedHotelBasedOnProvidedPositionOnPage(data.hotelPositionToClick);
+
+		// Check that user is on HotelDetails page
+		hotelDetailsPage.checkPage();
+
+		// Check that hotel address contains the name of the city provided as topic of search
+		hotelDetailsPage.checkCityNameInHotelAddress(data.updateTopicOfSearch);
+
+		// Click on Price tab
+		hotelDetailsPage.clickOnSpecifiedPageTab(data.hotelDetailsTabToClick);
+
+		// Check that Price tab is selected
+		hotelDetailsPage.checkTabIsSelected(data.hotelDetailsTabToClick);
+
+		// Check that lower price is presented as the first element on the Hotel Details page
+		hotelDetailsPage.checkLowerPriceIsPresentedFirstElement();
+
+		// Close Selected Hotel Details section
+		hotelResultsPage = hotelDetailsPage.closeSelectedHotelDetailsSection();
+
+		// Check that Hotel Details section is closed
+		hotelResultsPage.checkHotelDetailsSectionIsClosed();
 
 	});
 
