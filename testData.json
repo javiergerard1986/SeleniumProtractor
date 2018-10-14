@@ -1,5 +1,4 @@
 {
-"url":"https://www.room77.com/",
 "topicOfSearch":"Argentina",
 "suggestedSearch":"La Argentina",
 "daysToAddToFromDate":1,
@@ -17,5 +16,7 @@
 "filterSuggestedSearch":"Best Western Plus French Quarter Landmark Hotel",
 "filterBrand":"Best Western",
 "filterStarsRating":2,
-"filterGuestRatingPercent":70
+"filterGuestRatingPercent":70,
+"hotelPositionToClick":0,
+"hotelDetailsTabToClick":"Prices"
 }

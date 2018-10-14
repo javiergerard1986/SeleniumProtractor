@@ -1,5 +1,6 @@
 var SearchComponentPage = require('./components/SearchComponentPage.js');
 var UtilsPage = require('./utils/UtilsPage.js');
+var HotelDetailsPage = require('./HotelDetailsPage.js');
 
 var HotelResultsPage = function(){
 	
@@ -200,6 +201,23 @@ var HotelResultsPage = function(){
 				expect(currentGuestPercent).not.toBeLessThan(selectedGuestsPercent);
 			}
 		});
+	};
+
+	// Function to click on specified hotel position
+	this.clickOnSpecifiedHotelBasedOnProvidedPositionOnPage = function(hotelPosition){
+		this.hotelNamesLnkList.then(function(hotelNames){
+			// Click on specified hotel by position
+			hotelNames[hotelPosition].click();
+		});
+		return new HotelDetailsPage();
+	};
+
+	// Function to check that hotel details section is not present Hotel Results page
+	this.checkHotelDetailsSectionIsClosed = function(){
+		var sellAllAmenitiesLnk = element(by.xpath("//a[contains(text(),'See all amenities')]"));
+		var readMoreLnk = element(by.xpath("//a[contains(text(),'Read more')]"));
+		expect(browser.isElementPresent(sellAllAmenitiesLnk)).toBe(false);
+		expect(browser.isElementPresent(readMoreLnk)).toBe(false);
 	};
 
 };

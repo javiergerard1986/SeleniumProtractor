@@ -1,5 +1,6 @@
 {
 "seleniumAddress":"http://localhost:4444/wd/hub",
+"url":"https://www.room77.com/",
 "framework":"jasmine",
 "savePath":"./reports/",
 "fileName":"protractorTrainingCourseReporter.html",
